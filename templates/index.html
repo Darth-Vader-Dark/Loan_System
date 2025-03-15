@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Approval Form</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7fc;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding-top: 20%;
+        }
+
+        .container {
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            width: 80%;
+            max-width: 700px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        h2 {
+            text-align: center;
+            color: #2d3e50;
+            margin-bottom: 20px;
+            font-size: 2em;
+            animation: slideIn 1s ease-out;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            color: #333;
+            font-size: 1.1em;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            margin-top: 8px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"]:focus {
+            border-color: #4CAF50;
+            outline: none;
+            box-shadow: 0 0 10px rgba(76, 175, 80, 0.3);
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+            transform: scale(1.05);
+        }
+
+        /* Success Message */
+        .result {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 1.5em;
+            color: #333;
+            font-weight: bold;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .approved {
+            color: green;
+        }
+
+        .denied {
+            color: red;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideIn {
+            0% {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Loan Approval Form</h2>
+    <form method="POST">
+        
+        <div class="form-group">
+            <label for="credit_score">Credit Score:</label>
+            <input type="text" name="credit_score" id="credit_score" required>
+        </div>
+        <div class="form-group">
+            <label for="income">Income:</label>
+            <input type="text" name="income" id="income" required>
+        </div>
+        <div class="form-group">
+            <label for="employment_status">Employment Status:</label>
+            <input type="text" name="employment_status" id="employment_status" required>
+        </div>
+        <div class="form-group">
+            <label for="loan_amount">Loan Amount:</label>
+            <input type="text" name="loan_amount" id="loan_amount" required>
+        </div>
+        <div class="form-group">
+            <label for="monthly_income">Monthly Income:</label>
+            <input type="text" name="monthly_income" id="monthly_income" required>
+        </div>
+        <div class="form-group">
+            <label for="monthly_employment_status">Monthly Employment Status:</label>
+            <input type="text" name="monthly_employment_status" id="monthly_employment_status" required>
+        </div>
+        <div class="form-group">
+            <label for="number_of_dependents">Number of Dependents:</label>
+            <input type="text" name="number_of_dependents" id="number_of_dependents" required>
+        </div>
+        <div class="form-group">
+            <label for="months_employed">Months Employed:</label>
+            <input type="text" name="months_employed" id="months_employed" required>
+        </div>
+        <input type="submit" value="Submit">
+    </form>
+
+    {% if loan_status %}
+    <div class="result">
+        <h3 class="{{ 'approved' if loan_status == 'approved' else 'denied' }}">Loan Status: {{ loan_status }}</h3>
+    </div>
+    {% endif %}
+</div>
+
+</body>
+</html>
